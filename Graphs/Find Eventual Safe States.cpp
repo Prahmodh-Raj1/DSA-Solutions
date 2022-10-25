@@ -1,5 +1,5 @@
 //Problem link: https://leetcode.com/problems/find-eventual-safe-states/
-//TC : O(V+E) SC:O(V+E)
+//TC : O(VlogV + E) SC:O(V+E)
 
 class Solution {
 public:
