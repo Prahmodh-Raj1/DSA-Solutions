@@ -38,3 +38,30 @@ public:
         return total(nums,0,nums.size()-1,target);
     }
 };
+
+//Space optimised solution
+bool isSubsetSum(vector<int>arr, int k){
+     
+    int n=arr.size();
+    vector<bool> prev(k+1,0);
+    vector<bool> cur(k+1,0);
+    prev[0]=true;
+    cur[0]=0;
+    prev[arr[0]]=true;
+ 
+    for(int ind = 1; ind<n; ind++){
+        for(int target= 1; target<=k; target++){
+            
+            bool notTaken = prev[target];
+    
+            bool taken = false;
+                if(arr[ind]<=target)
+                    taken = prev[target-arr[ind]];
+        
+            cur[target]= notTaken||taken;
+        }
+        prev=cur;
+    }
+    
+    return prev[k];
+    }
