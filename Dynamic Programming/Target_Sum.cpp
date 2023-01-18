@@ -39,29 +39,32 @@ public:
     }
 };
 
-//Space optimised solution
-bool isSubsetSum(vector<int>arr, int k){
-     
-    int n=arr.size();
-    vector<bool> prev(k+1,0);
-    vector<bool> cur(k+1,0);
-    prev[0]=true;
-    cur[0]=0;
-    prev[arr[0]]=true;
- 
-    for(int ind = 1; ind<n; ind++){
-        for(int target= 1; target<=k; target++){
-            
-            bool notTaken = prev[target];
-    
-            bool taken = false;
-                if(arr[ind]<=target)
-                    taken = prev[target-arr[ind]];
-        
-            cur[target]= notTaken||taken;
+//Space optimised soln
+class Solution {
+public:
+    //we divide the array into two subsets such that the difference between the first and the second set is equal to target
+    int findTargetSumWays(vector<int>& nums, int targ) {
+        int sum=accumulate(nums.begin(),nums.end(),0);
+        if(sum-targ<0 or (sum-targ)%2) return 0;
+        int target=(sum-targ)/2;
+        vector<int> prev(target+1,0),cur(target+1,0);
+        int n=nums.size();
+        if(nums[0]==0){
+            prev[0]=2;
+        }else{
+            prev[0]=1;
         }
-        prev=cur;
-    }
+        if(nums[0]!=0 and nums[0]<=target) prev[nums[0]]=1;
+        for(int i=1;i<n;i++){
+            for(int t=0;t<=target;t++){
+                int nottake=prev[t];
+                int take=0;
+                if(nums[i]<=t) take=prev[t-nums[i]];
+                cur[t]=take+nottake;
+            }
+            prev=cur;
+        }
+        return prev[target];
     
-    return prev[k];
     }
+};
