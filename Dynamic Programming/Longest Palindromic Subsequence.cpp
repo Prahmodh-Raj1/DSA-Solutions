@@ -20,3 +20,34 @@ public:
         
     }
 };
+
+
+//Tabulation
+int longestPalindromeSubseq(string s) {
+        int n=s.size();
+        int l=0,r=n-1;
+
+        vector<vector<int>> dp(n+1,vector<int>(n+1,0));
+        for(int i=n-1;i>=0;i--){
+            dp[i][i]=1;
+            for(int j=i+1;j<n;j++){
+                if(i==j){
+                    dp[i][j]=1;
+                }
+                if(i>j){
+                    dp[i][j]=0;
+                }
+                int ans=0;
+                if(s[i]==s[j]){
+                    ans=2+dp[i+1][j-1];
+                }else{
+                    ans=max(dp[i+1][j],dp[i][j-1]);
+                }
+                dp[i][j]=ans;
+            }
+        }
+        return  dp[0][n-1];
+       
+    }
+
+//Can also be solved by reversing the string and finding the LCS btwn the two strings
