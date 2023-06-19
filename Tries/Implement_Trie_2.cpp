@@ -4,6 +4,7 @@ struct Node{
     bool flag=false;
     int endwith=0;
     int countpref=0;
+//on the flow, for every word's trie, we increase the count prefix and for every word that we are ending at, we increment the endwith for that particular trie
     bool containsKey(char ch){
         return (links[ch-'a']!=NULL);
     }
@@ -42,7 +43,7 @@ private:
 
     Trie(){
         // Write your code here.
-        root= new Node();
+        root= new Node();  //for every object ,we are creating a new trie
 
     }
 
@@ -50,13 +51,13 @@ private:
         // Write your code here.
         Node *node = root;
         for(int i=0;i<word.size();i++){
-            if(!node->containsKey(word[i])){
-                node->put(word[i],new Node());
+            if(!node->containsKey(word[i])){  //if the node doesn't contain the char, its not there
+                node->put(word[i],new Node()); //creating a reference trie
             }
-            node=node->get(word[i]);
-            node->increaseCountPrefix();
+            node=node->get(word[i]);  //moving the pointer
+            node->increaseCountPrefix();  //incrementing the prefix
         }
-        node->increaseend;
+        node->increaseend;  //after completing adding the word
     }
 
     int countWordsEqualTo(string &word){
@@ -64,8 +65,8 @@ private:
         Node* node=root;
         for(int i=0;i<word.size();i++){
             if(node->containsKey(word[i])){
-                node=node->get(word[i]);
-            }else{
+                node=node->get(word[i]);  //moving the pointer
+            }else{  //if we can't find the entire word
                 return 0;
             }
         }
@@ -79,19 +80,19 @@ private:
         for(int i=0;i<word.size();i++){
             if(node->containsKey(word[i])){
                 node=node->get(word[i]);
-            }else return 0;
+            }else return 0;  
         }
-        return node->getPrefix();
+        return node->getPrefix();  //currently how many are there with that particular prefix
     }
 
     void erase(string &word){
         // Write your code here
-        //we assume the word exists since we;ve been asked to erase it.
+        //we assume the word exists since we've been asked to erase it.
         Node* node= root;
         for(int i=0;i<word.size();i++){
             if(node->containsKey(word[i])){
                 node=node->get(word[i]);
-                node->decreaseCountPrefix();
+                node->decreaseCountPrefix();  //decrementing the count of the prefix
             }else return;
         }
         node->deleteEnd();
