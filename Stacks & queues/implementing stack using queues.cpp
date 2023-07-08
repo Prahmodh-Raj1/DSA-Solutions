@@ -1,3 +1,5 @@
+//Using two queues
+
 #include<bits/stdc++.h>
 using namespace std;
 class stak{
