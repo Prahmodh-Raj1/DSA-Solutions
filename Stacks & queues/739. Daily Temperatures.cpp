@@ -39,3 +39,26 @@ Output: [1,1,4,2,1,1,0,0]
         }
       return res;
     }
+
+//using a stack of pairs:
+class Solution {
+public:
+    vector<int> dailyTemperatures(vector<int>& t) {
+        stack<pair<int,int>> st;
+        int n= t.size();
+        vector<int>  res(n,0);
+        for(int i=n-1;i>=0;i--){
+            while(!st.empty() and st.top().first<=t[i]){
+                st.pop();
+            }
+            if(!st.empty()){
+                res[i]=st.top().second-i;
+            }else{
+                res[i]=0;
+            }
+            st.push({t[i],i});
+        }
+
+      return res;
+    }
+};
