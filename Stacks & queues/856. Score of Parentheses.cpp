@@ -40,3 +40,18 @@ Keep track of the balance of the string, as defined in Approach #1. For every ) 
         return ans;
     }
 }
+//Using a stack
+int scoreOfParentheses(string s) {
+        int score=0;
+        stack<int> st;
+        for(auto it:s){
+            if(it=='('){
+                st.push(score);
+                score=0;
+            }else{
+                score = st.top()+max(2*score,1);
+                st.pop();
+            }
+        }
+        return score;
+    }
