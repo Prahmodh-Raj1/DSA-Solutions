@@ -1,4 +1,9 @@
-//TC :O(N^2) SC:O(N)
+//Problem link: https://www.codingninjas.com/studio/problems/count-subsets-with-sum-k_3952532
+//TC :O(N*target) SC:O(N)
+//S1 + S2 = Total
+//S1> = S2
+//S1 - S2 = D
+//Solving the two equations, we get the expression for S2, that's our target sum
 int findWays(vector<int> &num, int k){
     int n = num.size();
 
