@@ -1,4 +1,28 @@
-
+//Problem link: https://www.codingninjas.com/studio/problems/rod-cutting-problem_800284?leftPanelTab=1
+//Recursive DP
+//TC: O(N*N) SC: O(N*N)
+private static int work(int price[],int dp[][],int ind,int n){
+		if(ind==0) return n*price[0];
+		if(dp[ind][n]!=-1) return dp[ind][n];
+		int notcut = work(price,dp,ind-1,n);
+		int cut = 0;
+		if(ind+1<=n){
+			cut =  price[ind] + work(price,dp,ind,n-ind-1);
+		}
+		dp[ind][n]= Math.max(notcut,cut);
+		return dp[ind][n];
+	}
+	
+	public static int cutRod(int price[], int n) {
+		// Write your code here
+		int  dp[][] = new int[n][n+1];
+		for(int i=0;i<n;i++){
+			for(int j=0;j<=n;j++){
+				dp[i][j]=-1;
+			}
+		}
+		return work(price,dp,n-1,n);
+	}
 //TC:O(N*N) SC:O(N*N)
 class Solution{
   public:
