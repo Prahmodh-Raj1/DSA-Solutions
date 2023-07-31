@@ -1,5 +1,6 @@
-//Problem link: 
+//Problem link: https://leetcode.com/problems/longest-string-chain
 //TC:O(N^2) SC:O(N)
+//Explanation link: https://takeuforward.org/data-structure/longest-string-chain-dp-45/
  bool compare(string& s1, string& s2){
     if(s1.size() != s2.size() + 1) return false;
     
