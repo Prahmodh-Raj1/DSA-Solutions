@@ -61,3 +61,24 @@ class Solution {
         //return LIS(0,-1,nums,dp);
     }
 }
+
+//LIS in O(NLOGN)
+        //Algorithm
+       /* Initialize a temp array.
+Push the first element of the array to temp.
+Iterate over the next elements.
+In every iteration, if arr[i] is greater than the last element of the temp array simply push it to the temp array.
+Else, just find the lower_bound index of that element in the temp array (say ind). THen simply initialize temp[ind] = arr[i] (// replacement step).
+Maintain a len variable to calculate the length of the temp array in the iteration itself.*/
+        vector<int> temp;
+        temp.push_back(nums[0]);
+        for(int i=1;i<nums.size();i++){
+            if(nums[i]>temp.back()){
+                temp.push_back(nums[i]);
+            }else{
+                //we need to do the replacement by finding the next greater than or equal to elementn
+                int ind = lower_bound(temp.begin(),temp.end(),nums[i])-temp.begin();
+                temp[ind]=nums[i];
+            }
+        }
+        return temp.size();
