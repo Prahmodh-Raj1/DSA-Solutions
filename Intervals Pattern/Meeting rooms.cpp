@@ -21,3 +21,5 @@ static bool comp(pair<int,int>& p1,pair<int,int>& p2){
         return cnt;
         
     }
+
+//Meeting rooms 2: https://www.geeksforgeeks.org/minimum-halls-required-for-class-scheduling/
