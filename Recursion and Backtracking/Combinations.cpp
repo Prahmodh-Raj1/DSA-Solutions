@@ -1,5 +1,5 @@
 //problem link:https://leetcode.com/problems/combinations
-//TC: O(N*2^N) SC: 
+//TC: O(K* nCk)  
 class Solution {
 public:
     vector<vector<int> > combine(int n, int k) {
