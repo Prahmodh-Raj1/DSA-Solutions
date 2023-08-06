@@ -1,5 +1,6 @@
 //problem link: https://leetcode.com/problems/largest-rectangle-in-histogram
 //TC: O(N) SC: O(N)
+//https://takeuforward.org/data-structure/area-of-largest-rectangle-in-histogram/
 Area: arr[i] * (right smaller – left smaller -1 ).
   class Solution {
 public:
