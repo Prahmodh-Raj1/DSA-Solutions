@@ -15,7 +15,7 @@ public:
             res.push_back(temp);
             return;
         }
-        for(int i = start;i<n;i++){
+        for(int i = start;i<n;i++){  //if we need to choose only few elements, then we need to start the loop from a particular index
             temp.push_back(i+1);  //including that element  
             combine(res,temp,i+1,num+1,n,k);  //incrementing the count of the element chosen so far
             temp.pop_back(); //removing that element
