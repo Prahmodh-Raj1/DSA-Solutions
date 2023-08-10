@@ -18,7 +18,7 @@ int searchinfinit(int a[],int n){
 	int high=1;  //start with a window of size 2
 	while(a[high]<key){  //checking the window range and increasing it if necessary
 		low=high+1;
-		high=2*high;
+		high=high + (high-low+1)*2;;
 	}
 	return binarysearch(a,key,low,high); //calling the main binarysearch function
 }
