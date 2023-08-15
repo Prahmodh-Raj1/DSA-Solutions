@@ -1,4 +1,17 @@
 //Problem link: https://leetcode.com/problems/generate-parentheses/
+/*
+    Given N pairs of parantheses, find all solutions.
+
+There are 2N characters we have to fill. For each character, we have two choices "(" or ")".
+
+The total number of nodes = 2^(2N) = 4^N
+
+Copy opeartion = O(2N) = O(N)
+
+=> O(N * 4^N)
+
+[Again, we don't techincally copy all combinations, just the valid ones, but we are certain it will never be worse than this.]
+    */
 class Solution {
 private:
     void findParantheses(string& cur,int open,int closed,int n,vector<string>& ans){
