@@ -1,4 +1,23 @@
 //Counting the number of possible ways to place n-queens in a nxn chessboard
+/*Time complexity explanation
+Given N * N board, return all possible solutions.
+
+We are checking row by row, and see where in each row, we can place the queen correctly.
+
+In the first row, we have N choices to place the queen (since there are N columns in each row).
+Then, we have (N-1) choices to place the queen in the next row (since there are N columns in each row, and one of them has been taken in the first row).
+... and so on.
+
+This gives us the maximum number of outputs (more like possibilities in this case) of N! (and they are leaf nodes by S2).
+
+It took N steps to reach each leaf node => N * N! is the toal number of nodes
+
+And there will be at most N! solutions (as they are the leaf nodes) to copy over => O(N^2 * N!)
+
+=> O(N * N! + N^2 * N!) => O(N^2 * N!)
+
+[Note we did not take into account the optimization of pruning wasteful explorations, but we are certain it will never be worse than this runtime]
+*/
 #include<bits/stdc++.h>
 using namespace std;
 int n;
