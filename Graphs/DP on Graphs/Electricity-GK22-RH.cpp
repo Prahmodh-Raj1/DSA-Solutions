@@ -1,4 +1,4 @@
-//Problem link: https://codingcompetitions.withgoogle.com/kickstart/round/00000000008cb1b6/0000000000c47c8e
+//Problem link: https://programmingpathshala.medium.com/solution-google-kickstart-round-h-2022-problem-c-electricity-d7316f2ef5c9
 //TC : O(N) SC:O(N*E)+O(N)
 #include<bits/stdc++.h>
 using namespace std;
