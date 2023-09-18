@@ -70,3 +70,48 @@ int solve(){
     vector<vector<int>> dp(n+1,vector<int>(temp+1,-1));
     return func(0,temp-1,n,cost,dp);
 }
+
+SC: O(N*2^N)  TC: O(N^2 * 2^N)
+//N^2 in TC is for traversing matrix
+//2^N indicates the mask created
+
+//Solution
+
+int cost[21][21];
+int dp[21][(1<<21)];
+int solve(int i,int mask,int n){
+
+	//Base case
+	//If all the jobs are done
+	if(i==n) return 0; //applying zero based indexing
+
+	if(dp[i][mask]!=-1) return dp[i][mask];
+
+
+	//try out every person, and try assigning to i'th job
+	//find the minimum cost of a person for the i'th job
+	int ans=INT_MAX;
+	for(int j=0;j<n;j++){
+		//first, check if the j'th person is available
+
+		if(mask & (1<<j)){
+			//they are available
+			ans = min(ans,cost[j][i]+solve(i+1,mask ^ (1<<j),n));
+		} 
+	}
+	return  dp[i][mask] = ans;
+}
+
+int main(){
+	int n,m,x,i,j,k,q;
+	cout<<"Enter the value of n\n";
+	cin>>n;
+	memset(dp,-1,sizeof(dp));
+	for(int i=0;i<n;i++){
+		for(int j=0;j<n;j++){
+			cin>>cost[i][j];
+		}
+	}
+	cout<<solve(0,(1<<n)-1,n)<<"\n"; //initially all ppl are available
+	return  0;
+}
